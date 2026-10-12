@@ -9,9 +9,9 @@
 SetPackageInfo( rec(
 
 PackageName := "CoxIter",
-Subtitle := "Computations of invariants of hyperbolic Coxeter groups",
-Version := "1.0b",
-Date := "17/08/2016", # dd/mm/yyyy format
+Subtitle := "Computation of invariants of hyperbolic Coxeter groups",
+Version := "1.1.0dev",
+Date := "12/10/2026", # dd/mm/yyyy format
 License := "GPL-3.0-or-later",
 
 Persons := [
@@ -35,11 +35,10 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/rgugliel/", ~.PackageName ),
+    URL := Concatenation( "https://github.com/gap-packages/", ~.PackageName ),
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-#SupportEmail   := "TODO",
-PackageWWWHome  := "https://github.com/rgugliel/CoxIterGAP",
+PackageWWWHome  := Concatenation( "https://gap-packages.github.io/", ~.PackageName, "/" ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,
@@ -48,63 +47,57 @@ ArchiveURL      := Concatenation( ~.SourceRepository.URL,
 
 ArchiveFormats := ".tar.gz",
 
-##  Status information. Currently the following cases are recognized:
-##    "accepted"      for successfully refereed packages
-##    "submitted"     for packages submitted for the refereeing
-##    "deposited"     for packages for which the GAP developers agreed
-##                    to distribute them with the core GAP system
-##    "dev"           for development versions of packages
-##    "other"         for all other packages
-##
 Status := "dev",
 
-AbstractHTML   :=  "",
+AbstractHTML   :=  "The <span class=\"pkgname\">CoxIter</span> package \
+computes invariants of hyperbolic Coxeter groups: the Euler characteristic, \
+the f-vector of the associated polyhedron, the growth series, and whether \
+the group is cofinite or cocompact. It does so by calling the C++ program \
+CoxIter, whose source code it includes.",
 
 PackageDoc := rec(
   BookName  := "CoxIter",
   ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "Computation of invariants of hyperbolic Coxeter groups",
 ),
 
 Dependencies := rec(
-  GAP := ">= 4.8",
-  NeededOtherPackages := [],
+  GAP := ">= 4.12",
+  NeededOtherPackages := [ ],
   SuggestedOtherPackages := [ ],
   ExternalConditions := [ ],
 ),
 
 AvailabilityTest := function()
-  local path, file;
     # test for existence of the compiled binary
-    path:= DirectoriesPackagePrograms( "coxiter" );
-    file:= Filename( path, "coxiter" );
-    if file = fail then
+    if Filename( DirectoriesPackagePrograms( "coxiter" ), "coxiter" ) = fail then
       LogPackageLoadingMessage( PACKAGE_WARNING,
-          [ "The program `CoxIter' is not compiled.",
-            "See the installation instructions;",
-            "type: ?Installing the Example package" ] ); # TODO: update this
+          [ "The program `coxiter' is not compiled,",
+            "see the installation instructions in README.md" ] );
+      return false;
     fi;
-    return file <> fail;
+    return true;
   end,
-  
-BannerString := Concatenation( 
-    "----------------------------------------------------------------\n",
-    "Loading CoxIter ", ~.Version, "\n",
-    ~.Subtitle, "\n",
-    "by ",
-    JoinStringsWithSeparator( List( Filtered( ~.Persons, r -> r.IsAuthor ),
-                                    r -> Concatenation(
-        r.FirstNames, " ", r.LastName, " (", r.WWWHome, ")\n" ) ), "   " ),
-    "For help, type: ?CoxIter package \n",
-    "----------------------------------------------------------------\n" ),
 
 TestFile := "tst/testall.g",
 
-#Keywords := [ "TODO" ],
+Keywords := [ "hyperbolic Coxeter group", "Coxeter polyhedron",
+              "Euler characteristic", "f-vector", "growth series" ],
+
+AutoDoc := rec(
+    TitlePage := rec(
+        Copyright := """
+          &copyright; 2013-2017 by Rafael Guglielmetti<P/>
+
+          This package is free software: you can redistribute it and/or
+          modify it under the terms of the <URL Text="GNU General Public
+          License">https://www.gnu.org/licenses/gpl.html</URL> as published
+          by the Free Software Foundation, either version 3 of the License,
+          or (at your option) any later version.""",
+    ),
+),
 
 ));
-
-
