@@ -32,5 +32,12 @@ Error, The Coxeter matrix must be a symmetric matrix of non-negative integers
 gap> CreateCoxIterFromCoxeterMatrix([[1,1/2],[1/2,1]], 1);
 Error, The Coxeter matrix must be a symmetric matrix of non-negative integers
 
+# the simplex [4,3,3,5] has dimension 4
+gap> ci := CreateCoxIterFromCoxeterGraph(
+>   [[1,[2,4]],[2,[3,3]],[3,[4,3]],[4,[5,5]]], 2);;
+gap> FVector(ci);
+Error, One error occured: The specified graph contains a spherical subgraph wh\
+ich has too big rank.
+
 #
 gap> STOP_TEST("errors.tst");

@@ -10,30 +10,32 @@ InstallMethod( CoxIterCompute,
 	"Call CoxIter to perform the computations of the invariants",
 	[ IsCoxIter ],
 	function( ci )
-		local cur_dir, ci_file, ci_stream, ci_output, mat_size, i, line, data, fnum, fden;
+		local ci_file, ci_input, ci_stream, ci_output, row, line, data, fnum, fden;
 	
-		mat_size := Length(ci!.iCoxeterMatrix);
-		cur_dir := DirectoryCurrent();
 		ci_file := Filename(DirectoriesPackagePrograms("coxiter"), "coxiter");
-		ci_stream := InputOutputLocalProcess(cur_dir,ci_file,[]);
 		
 		# -----------------------------------------
 		# Sending information
+		ci_input := "";
+		ci_stream := OutputTextString(ci_input,true);
 		WriteLine(ci_stream,Concatenation("dimension:",String(ci!.iDimension)));
 		WriteLine(ci_stream,"matrix:start");
-		for i in [1..mat_size] do
-			WriteLine(ci_stream,String(ci!.iCoxeterMatrix[i]));
+		for row in ci!.iCoxeterMatrix do
+			# String(row) would print a range as "[ 1 .. 3 ]"
+			WriteLine(ci_stream,JoinStringsWithSeparator(List(row,String),","));
 		od;
 		WriteLine(ci_stream,"matrix:end");
 		WriteLine(ci_stream,"exit");
+		CloseStream(ci_stream);
+		
+		# Not InputOutputLocalProcess: reading from a pseudo terminal may
+		# return half a line.
+		ci_output := "";
+		Process(DirectoryCurrent(),ci_file,InputTextString(ci_input),OutputTextString(ci_output,true),[]);
 		
 		# -----------------------------------------
 		# Reading information
-		while true do
-			line := ReadLine(ci_stream);
-			
-			if line = fail then	break; fi;
-			
+		for line in SplitString(ci_output,"","\n") do
 			data := SplitString( line, ":" );
 			
 			if data[1] = "error" then Error("One error occured: ", data[2] ); return; fi;
@@ -44,10 +46,13 @@ InstallMethod( CoxIterCompute,
 			elif data[1] = "fvector" then SetFVector(ci, EvalString(data[2]));
 			elif data[1] = "fnum" then fnum := Concatenation( "Product( [", data[2], "], i -> CyclotomicPolynomial(Rationals,i) )" );
 			elif data[1] = "fden" then fden := Concatenation( "ValuePol([", data[2], "], X(Rationals))" );
-			elif data[1] = "dimensionguessed" then Print( "Dimension was assumed to be ", data[2] ); 
+			elif data[1] = "dimensionguessed" then Print( "Dimension was assumed to be ", data[2], "\n" ); 
 			fi;
 		od;
-		CloseStream(ci_stream);
+		
+		if not IsBound(fnum) or not IsBound(fden) then
+			Error("Unexpected output of the coxiter program: ", ci_output);
+		fi;
 		
 		SetGrowthSeries(ci, [EvalString(fnum),EvalString(fden)] );
 		

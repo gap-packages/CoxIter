@@ -27,6 +27,11 @@ gap> EulerCharacteristic(ci);
 gap> FVector(ci);
 [ 5, 10, 10, 5, 1 ]
 
+# the triangle group (2,3,7); a row of the matrix may be a range
+gap> ci := CreateCoxIterFromCoxeterMatrix([[1..3],[2,1,7],[3,7,1]], 2);;
+gap> EulerCharacteristic(ci);
+-1/84
+
 # an unknown dimension is guessed
 gap> ci := CreateCoxIterFromCoxeterGraph(
 >   [[1,[2,4]],[2,[3,3]],[3,[4,3]],[4,[5,5]]], 0);
