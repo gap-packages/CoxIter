@@ -76,7 +76,7 @@ distclean: clean
 	rm -rf Makefile
 
 doc:
-	gap -A -q -T < makedocrel.g
+	$(GAP) --quitonbreak -b -q < makedoc.g
 
 .PHONY: all default clean distclean doc
 
