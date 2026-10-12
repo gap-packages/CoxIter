@@ -17,14 +17,19 @@ License := "GPL-3.0-or-later",
 Persons := [
   rec(
     IsAuthor := true,
-    IsMaintainer := true,
+    IsMaintainer := false,
     FirstNames := "Rafael",
     LastName := "Guglielmetti",
     WWWHome := "https://rgug.ch",
     Email := "rafael@rgug.ch",
-    PostalAddress := "Chemin du Musee, CH-1700 Fribourg",
-    Place := "Fribourg",
-    Institution := "University of Fribourg",
+    GitHubUsername := "rgugliel",
+  ),
+  rec(
+    LastName      := "GAP Team",
+    FirstNames    := "The",
+    IsAuthor      := false,
+    IsMaintainer  := true,
+    Email         := "support@gap-system.org",
   ),
 ],
 
