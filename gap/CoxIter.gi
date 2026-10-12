@@ -120,6 +120,14 @@ InstallMethod( CreateCoxIterFromCoxeterMatrix,
 	"Create `CoxIter' from the Coxeter matrix",
 	[ IsMatrix, IsInt ],
 	function( M, Dim )
+		local size, IsWeight;
+
+		size := Length(M);
+		IsWeight := x -> IsInt(x) and 0 <= x and x <= _CoxIter_MAXSIZES[1];
+		if not ForAll(M, row -> Length(row) = size and ForAll(row, IsWeight)) or M <> TransposedMat(M) then
+			Error("The Coxeter matrix must be a symmetric matrix of non-negative integers");
+		fi;
+
 		if Dim < 0 then
 			Dim := 0;
 		fi;
@@ -167,6 +175,10 @@ InstallMethod( CreateCoxIterFromCoxeterGraph,
 		
 		graph_size := Length(G);
 		for i in [1..graph_size] do
+			if not IsList(G[i]) then
+				Error("Ill formed graph");
+			fi;
+
 			temp_size := Length( G[i] );
 			if temp_size = 0 then
 				continue;
@@ -174,7 +186,7 @@ InstallMethod( CreateCoxIterFromCoxeterGraph,
 			
 			starting_vertex := G[i][1];
 			if IsInt(starting_vertex)=false or starting_vertex<=0 or starting_vertex>_CoxIter_MAXSIZES[2] then
-				Error("Incorrect vertex format: ", vertex);
+				Error("Incorrect vertex format: ", starting_vertex);
 			fi;
 			
 			if Length(mat) < starting_vertex then
@@ -182,7 +194,7 @@ InstallMethod( CreateCoxIterFromCoxeterGraph,
 			fi;
 			
 			for j in [2..temp_size] do
-				if Length(G[i][j]) > 2 then
+				if not IsList(G[i][j]) or not Length(G[i][j]) in [1,2] then
 					Error("Ill formed graph");
 				fi;
 				
