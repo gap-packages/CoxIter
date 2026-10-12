@@ -140,7 +140,7 @@ InstallMethod( CreateCoxIterFromCoxeterMatrix,
 		return Objectify( CoxIterType, rec( iCoxeterMatrix := M, bInvariantsComputed := false, iDimension := Dim, iCofinite := -2, iCocompact := -2, rEulerCharacteristic := 0, iFVector := [] ) );
 	end );
 	
-ExpandSquareMatrix := function( mat, n )
+BindGlobal( "_CoxIter_ExpandSquareMatrix", function( mat, n )
 	local cur_mat_size, r, c;
 	
 	cur_mat_size := Length(mat);
@@ -165,7 +165,7 @@ ExpandSquareMatrix := function( mat, n )
 			fi;
 		od;
 	od;
-end;
+end );
 
 InstallMethod( CreateCoxIterFromCoxeterGraph,	
 	"Create `CoxIter' from the Coxeter graph",
@@ -195,7 +195,7 @@ InstallMethod( CreateCoxIterFromCoxeterGraph,
 			fi;
 			
 			if Length(mat) < starting_vertex then
-				ExpandSquareMatrix( mat, starting_vertex );
+				_CoxIter_ExpandSquareMatrix( mat, starting_vertex );
 			fi;
 			
 			for j in [2..temp_size] do
@@ -210,7 +210,7 @@ InstallMethod( CreateCoxIterFromCoxeterGraph,
 				fi;
 				
 				if Length(mat) < vertex then
-					ExpandSquareMatrix( mat, vertex );
+					_CoxIter_ExpandSquareMatrix( mat, vertex );
 				fi;
 				
 				if Length(G[i][j]) > 1 then

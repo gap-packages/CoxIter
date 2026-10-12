@@ -4,7 +4,7 @@
 # Declarations
 #
 
-CoxIterFamily := NewFamily("CoxIterFamily");
+BindGlobal( "CoxIterFamily", NewFamily("CoxIterFamily") );
 
 DeclareCategory( "IsCoxIter", IsObject );
 
@@ -38,9 +38,9 @@ DeclareAttribute( "FVector", IsCoxIter );
 #! Compute the rational expansion of the growth series
 DeclareAttribute( "GrowthSeries", IsCoxIter );
 
-IsCoxIterRep := NewRepresentation("IsCoxIter", IsObject and IsComponentObjectRep and IsAttributeStoringRep, [ "iCoxeterMatrix", "iDimension", "bInvariantsComputed", "iCofinite", "iCocompact", "iFVector", "rEulerCharacteristic", "pGrowthSeries" ]);
+DeclareRepresentation( "IsCoxIterRep", IsComponentObjectRep and IsAttributeStoringRep, [ "iCoxeterMatrix", "iDimension", "bInvariantsComputed", "iCofinite", "iCocompact", "iFVector", "rEulerCharacteristic", "pGrowthSeries" ]);
 
-CoxIterType := NewType( CoxIterFamily, IsCoxIter and IsCoxIterRep and IsAttributeStoringRep );
+BindGlobal( "CoxIterType", NewType( CoxIterFamily, IsCoxIter and IsCoxIterRep ) );
 
 #! @Arguments gr, dimension
 #! @Returns a CoxIter object
