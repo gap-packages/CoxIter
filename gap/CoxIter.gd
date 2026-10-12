@@ -1,5 +1,5 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # Declarations
 #

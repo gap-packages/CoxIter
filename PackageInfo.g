@@ -1,5 +1,5 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # This file contains package meta data. For additional information on
 # the meaning and correct usage of these fields, please consult the
@@ -8,7 +8,7 @@
 #
 SetPackageInfo( rec(
 
-PackageName := "CoxIter",
+PackageName := "CoxIterGAP",
 Subtitle := "Computation of invariants of hyperbolic Coxeter groups",
 Version := "1.1.0dev",
 Date := "12/10/2026", # dd/mm/yyyy format
@@ -49,14 +49,14 @@ ArchiveFormats := ".tar.gz",
 
 Status := "dev",
 
-AbstractHTML   :=  "The <span class=\"pkgname\">CoxIter</span> package \
+AbstractHTML   :=  "The <span class=\"pkgname\">CoxIterGAP</span> package \
 computes invariants of hyperbolic Coxeter groups: the Euler characteristic, \
 the f-vector of the associated polyhedron, the growth series, and whether \
 the group is cofinite or cocompact. It does so by calling the C++ program \
 CoxIter, whose source code it includes.",
 
 PackageDoc := rec(
-  BookName  := "CoxIter",
+  BookName  := "CoxIterGAP",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
@@ -73,7 +73,7 @@ Dependencies := rec(
 
 AvailabilityTest := function()
     # test for existence of the compiled binary
-    if Filename( DirectoriesPackagePrograms( "coxiter" ), "coxiter" ) = fail then
+    if Filename( DirectoriesPackagePrograms( "CoxIterGAP" ), "coxiter" ) = fail then
       LogPackageLoadingMessage( PACKAGE_WARNING,
           [ "The program `coxiter' is not compiled,",
             "see the installation instructions in README.md" ] );
@@ -88,6 +88,9 @@ Keywords := [ "hyperbolic Coxeter group", "Coxeter polyhedron",
               "Euler characteristic", "f-vector", "growth series" ],
 
 AutoDoc := rec(
+    entities := rec(
+        CoxIter := "<Package>CoxIter</Package>",
+    ),
     TitlePage := rec(
         Copyright := """
           &copyright; 2013-2017 by Rafael Guglielmetti<P/>

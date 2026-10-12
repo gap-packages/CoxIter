@@ -1,12 +1,12 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # This file runs package tests. It is also referenced in the package
 # metadata in PackageInfo.g.
 #
-LoadPackage( "CoxIter" );
+LoadPackage( "CoxIterGAP" );
 
-TestDirectory(DirectoriesPackageLibrary( "CoxIter", "tst" ),
+TestDirectory(DirectoriesPackageLibrary( "CoxIterGAP", "tst" ),
   rec(exitGAP := true));
 
 FORCE_QUIT_GAP(1); # if we ever get here, there was an error

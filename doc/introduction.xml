@@ -1,6 +1,6 @@
 <Chapter Label="Introduction">
 <Heading>Introduction</Heading>
-This chapter gives general information about the &GAP; package &CoxIter;.
+This chapter gives general information about the &GAP; package &CoxIterGAP;, an interface to the program &CoxIter;.
 
 <Section Label="section:coxiterprogram">
 	<Heading>The standalone program</Heading>

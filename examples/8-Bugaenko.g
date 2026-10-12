@@ -1,4 +1,4 @@
-LoadPackage( "CoxIter" );
+LoadPackage( "CoxIterGAP" );
 
 cibugaenko8 := CreateCoxIterFromCoxeterGraph([[1,[2,5]],[2,[3,3]],[3,[4,3]],[4,[5,3],[10,3]],[5,[6,3]],[6,[7,3],[11,3]],[7,[8,3]],[8,[9,5]],[10,[11,1]]],8);
 g := GrowthSeries(cibugaenko8);;

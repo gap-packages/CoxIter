@@ -1,5 +1,5 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # Implementations
 #
@@ -12,7 +12,7 @@ InstallMethod( CoxIterCompute,
 	function( ci )
 		local ci_file, ci_input, ci_stream, ci_output, row, line, data, fnum, fden;
 	
-		ci_file := Filename(DirectoriesPackagePrograms("coxiter"), "coxiter");
+		ci_file := Filename(DirectoriesPackagePrograms("CoxIterGAP"), "coxiter");
 		
 		# -----------------------------------------
 		# Sending information

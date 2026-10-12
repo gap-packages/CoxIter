@@ -1,4 +1,4 @@
-This file describes changes in the CoxIter package.
+This file describes changes in the CoxIterGAP package.
 
 ## Unreleased
 

@@ -1,5 +1,5 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # This file is a script which compiles the package manual.
 #

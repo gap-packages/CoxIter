@@ -1,7 +1,7 @@
 #
-# CoxIter: Computation of invariants of hyperbolic Coxeter groups
+# CoxIterGAP: Computation of invariants of hyperbolic Coxeter groups
 #
 # Reading the declaration part of the package.
 #
 
-ReadPackage( "CoxIter", "gap/CoxIter.gd");
+ReadPackage( "CoxIterGAP", "gap/CoxIter.gd");

@@ -1,7 +1,7 @@
-[![CI](https://github.com/gap-packages/CoxIter/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/CoxIter/actions/workflows/CI.yml)
-[![Code Coverage](https://codecov.io/github/gap-packages/CoxIter/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/CoxIter)
+[![CI](https://github.com/gap-packages/CoxIterGAP/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/CoxIterGAP/actions/workflows/CI.yml)
+[![Code Coverage](https://codecov.io/github/gap-packages/CoxIterGAP/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/CoxIterGAP)
 
-# The GAP package CoxIter
+# The GAP package CoxIterGAP
 
 This package computes invariants of hyperbolic Coxeter groups: the Euler
 characteristic, the f-vector of the associated polyhedron, the growth series,
@@ -29,8 +29,8 @@ standalone CoxIter uses, is not needed.
 
 Then run the following in the `pkg` directory of your GAP installation:
 
-    git clone https://github.com/gap-packages/CoxIter
-    cd CoxIter
+    git clone https://github.com/gap-packages/CoxIterGAP
+    cd CoxIterGAP
     ./configure
     make
 
@@ -58,7 +58,7 @@ a weight 1 to a dotted line (ultra-parallel hyperplanes).
 second argument is the dimension of the space, or 0 if it is unknown. The
 cocompact hyperbolic Coxeter group in dimension 8 found by Bugaenko is
 
-    gap> LoadPackage("CoxIter");
+    gap> LoadPackage("CoxIterGAP");
     true
     gap> ci := CreateCoxIterFromCoxeterGraph([[1,[2,5]],[2,[3,3]],[3,[4,3]],
     >   [4,[5,3],[10,3]],[5,[6,3]],[6,[7,3],[11,3]],[7,[8,3]],[8,[9,5]],
@@ -92,11 +92,11 @@ For the example:
 ## Bug reports and feature requests
 
 Please submit them to the
-[issue tracker](https://github.com/gap-packages/CoxIter/issues).
+[issue tracker](https://github.com/gap-packages/CoxIterGAP/issues).
 
 ## License
 
-CoxIter is free software; you can redistribute it and/or modify it under the
+CoxIterGAP is free software; you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation; either version 3 of the License, or (at your option) any later
 version. See the file `LICENSE` for details.
