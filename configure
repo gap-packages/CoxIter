@@ -32,7 +32,8 @@ fi
 
 . $GAPPATH/sysinfo.gap
 
-if test -r "$GMP_PREFIX/include/gmp.h"; then
+# the copy of GMP that GAP builds for itself lacks the C++ bindings
+if test -r "$GMP_PREFIX/include/gmpxx.h"; then
     echo "GMP found: Using GAP version of GMP"
     GMP_CPPFLAGS="-I$GMP_PREFIX/include"
     GMP_LDFLAGS="-L$GMP_PREFIX/lib -lgmp -lgmpxx"
